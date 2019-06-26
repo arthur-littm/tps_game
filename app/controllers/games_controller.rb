@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :find_game, only: [:show, :edit, :update, :destroy]
+  before_action :find_game, only: [:show, :edit, :update, :destroy, :invite]
   def index
     @games = Game.all
   end
@@ -21,6 +21,9 @@ class GamesController < ApplicationController
     end
   end
 
+  def invite
+  end
+
   def edit
   end
 
@@ -36,7 +39,6 @@ class GamesController < ApplicationController
     @game.destroy
     redirect_to games_path
   end
-
 
   private
 
