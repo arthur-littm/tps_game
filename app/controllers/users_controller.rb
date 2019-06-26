@@ -13,7 +13,8 @@ class UsersController < ApplicationController
         render "games/invite"
       end
     else
-      flash[:error] = 'Game not found'
+      @user = User.new
+      flash[:alert] = 'Game not found'
       render "games/invite"
     end
   end
