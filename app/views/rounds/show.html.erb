@@ -9,7 +9,7 @@
   <% end %>
   <ul id="answer_section">
     <% @round.answers.each do |answer| %>
-      <li><%= answer.content %></li>
+      <li id="answer-<%= answer.id %>"><%= answer.content %> - <%= answer.votes.size %> Votes <%= link_to 'Vote', vote_answer_path(answer), class: 'vote_btn', method: :post, remote: true unless answer.user == @user || answer.votes.map(&:user).include?(@user) %></li>
     <% end %>
   </ul>
 </div>

@@ -6,6 +6,8 @@ class AnswersController < ApplicationController
     @answer.user = User.find(session[:user_id])
     @answer.save
     Pusher.trigger('answer-channel','new-answer', {
+      answer: @answer.content,
+      id: @answer.id,
       missing: @answer.round.answers.size
     })
     # redirect_to game_round_path(@answer.round.game, @answer.round)
@@ -16,9 +18,15 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     vote = Vote.new(user: @user, answer: @answer, round: @answer.round)
     if vote.save
-      render json: { message: 'success' }, status: 200
+      Pusher.trigger('answer-channel', 'vote', {
+        id: @answer.id,
+        content: @answer.content,
+        voteCount: @answer.votes.size
+      })
     else
-      render json: { message: @votes.errors.full_messages }, status: 422
+      Pusher.trigger('answer-channel', 'error', {
+        error: vote.errors.full_messages
+      })
     end
   end
 
