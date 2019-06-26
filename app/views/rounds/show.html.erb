@@ -8,7 +8,7 @@
       <% unless @round.answers.pluck(:user_id).include?(session[:user_id]) %>
         <%= simple_form_for [@round, @answer] do |f| %>
           <%= f.input :content, label: false %>
-          <%= f.submit 'Submit answer', id:'submit_answer', class: "btn btn-three" %>
+          <%= f.submit 'Submit answer', id:'submit_answer', class: "btn btn-light", data: {disable_with: "Answer submitted"} %>
         <% end %>
       <% end %>
     <% else %>
