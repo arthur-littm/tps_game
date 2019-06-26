@@ -1,4 +1,5 @@
 <div class="container">
+  <p>Guess the <%= @round.guess_category %> for <%= @round.start_up.company %></p>
   <%= simple_form_for [@round, @answer] do |f| %>
     <%= f.input :content %>
     <%= f.submit 'guess', id:'submit_anwser' %>

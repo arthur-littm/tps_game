@@ -25,7 +25,7 @@ class GamesController < ApplicationController
       start_ups = StartUp.all.sample(rounds)
       rounds.times do
         start_up = start_ups.sample
-        Round.create(game: @game, start_up: start_up)
+        Round.create(game: @game, start_up: start_up, guess_category: Round::CATEGORIES.sample)
         start_ups.delete(start_up)
       end
       redirect_to game_path(@game.code)

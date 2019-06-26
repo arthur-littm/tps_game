@@ -1,3 +1,7 @@
+Answer.destroy_all
+StartUp.destroy_all
+Round.destroy_all
+
 airbnb = StartUp.create!(
   company: "Airbnb",
   target: "Holiday goers",
