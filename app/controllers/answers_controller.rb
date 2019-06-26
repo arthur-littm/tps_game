@@ -6,7 +6,7 @@ class AnswersController < ApplicationController
     @answer.user = User.find(session[:user_id])
     @answer.save
     Pusher.trigger('answer-channel','new-answer', {
-      answer: @answer.content
+      missing: @answer.round.answers.size
     })
     # redirect_to game_round_path(@answer.round.game, @answer.round)
   end
