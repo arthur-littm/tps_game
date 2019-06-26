@@ -8,6 +8,7 @@ class AnswersController < ApplicationController
     Pusher.trigger('answer-channel','new-answer', {
       answer: @answer.content
     })
+    # redirect_to game_round_path(@answer.round.game, @answer.round)
   end
 
   def vote
