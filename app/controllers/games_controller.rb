@@ -17,9 +17,17 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new
+    rounds = game_params[:rounds].to_i
     @game.code = SecureRandom.hex(5)
-    @game.user = find_user
+    @user = User.new(name: game_params[:user_name])
     if @game.save
+      @user.game = @game
+      @user.save
+      @game.update(user: @user)
+      rounds.times do
+        startups = StartUp.all.sample(rounds)
+        Round.create(game: @game, startup: startups[rounds - 1])
+      end
       redirect_to game_path(@game)
     else
       render :new
@@ -27,6 +35,10 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def game_params
+    params.require(:game).permit(:rounds, :user_name)
+  end
 
   def find_game
     @game = Game.find_by(code: params[:id])
