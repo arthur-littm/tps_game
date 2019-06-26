@@ -7,6 +7,13 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400&display=swap" rel="stylesheet">
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script>
+      var pusher = new Pusher('<%= ENV['PUSHER_APP_KEY'] %>', {
+        cluster: 'eu',
+        encrypted: true
+      });
+    </script>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
