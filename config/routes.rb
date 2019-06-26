@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     end
   end
   resources :games, only: [:new, :create, :show] do
+    member do
+      get 'results'
+    end
     resources :rounds do
       member do
         get 'result'

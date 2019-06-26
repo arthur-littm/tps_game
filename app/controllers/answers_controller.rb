@@ -17,17 +17,16 @@ class AnswersController < ApplicationController
   def vote
     @user = User.find(session[:user_id])
     @answer = Answer.find(params[:id])
+    @round = @answer.round
     vote = Vote.new(user: @user, answer: @answer, round: @answer.round)
     if vote.save
-      Pusher.trigger('answer-channel', 'vote', {
-        id: @answer.id,
-        content: @answer.content,
-        voteCount: @answer.votes.size
-      })
-    else
-      Pusher.trigger('answer-channel', 'error', {
-        error: vote.errors.full_messages
-      })
+      if @round.answers.size == @round.votes.size
+        next_round_id = @round.game.rounds[@round.game.rounds.index(@round) + 1]&.id
+        Pusher.trigger('answer-channel', 'round-finish', {
+          nextRound: next_round_id,
+          game: @round.game.id
+        })
+      end
     end
   end
 

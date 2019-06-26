@@ -5,7 +5,9 @@
     <div class="round-result">
         <ul id="answer_section" class="round-answers">
           <% @round.answers.each do |answer| %>
-            <li class="round-answer-box"><%= answer.content %></li>
+            <%= link_to vote_answer_path(answer), method: :post, remote: true do%>
+              <li class="round-answer-box"><%= answer.content %></li>
+            <% end %>
           <% end %>
         </ul>
     </div>
@@ -18,4 +20,12 @@
       e.currentTarget.classList.toggle("round-answers-active");
     });
   });
+  const channel = pusher.subscribe('answer-channel');
+  channel.bind('round-finish', (({ nextRound, game }) => {
+    if (nextRound) {
+      window.location.href = `/games/${game}/rounds/${nextRound}/`
+    } else {
+      window.location.href = `/games/${game}/results`
+    }
+  }))
 </script>
