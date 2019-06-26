@@ -1,0 +1,16 @@
+<div class="container join pt-3">
+  <h1 class="mb-5">NAME THE PAIN!</h1>
+  <p>Pick the best solution for <%= @start_up.company %></p>
+  <div class="my-5">
+    <div class="round-result">
+        <ul id="answer_section">
+          <% @round.answers.each do |answer| %>
+            <li><%= answer.content %></li>
+          <% end %>
+        </ul>
+
+    </div>
+
+  </div>
+
+</div>
