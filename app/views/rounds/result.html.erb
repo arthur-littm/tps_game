@@ -3,14 +3,19 @@
   <p>Pick the best solution for <%= @start_up.company %></p>
   <div class="my-5">
     <div class="round-result">
-        <ul id="answer_section">
+        <ul id="answer_section" class="round-answers">
           <% @round.answers.each do |answer| %>
-            <li><%= answer.content %></li>
+            <li class="round-answer-box"><%= answer.content %></li>
           <% end %>
         </ul>
-
     </div>
-
   </div>
-
 </div>
+<script>
+  const results = document.querySelectorAll("#answer_section li");
+  results.forEach((answer) => {
+    answer.addEventListener('click', (e) => {
+      e.currentTarget.classList.toggle("round-answers-active");
+    });
+  });
+</script>
