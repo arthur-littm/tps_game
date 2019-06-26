@@ -18,7 +18,11 @@
     channel.bind('new-answer', (data) => {
         let missing = data.missing;
         document.getElementById('answer_content').value = '';
-        document.getElementById('new_answer').remove();
+        let currentUser = <%= session[:user_id] %>;
+        let answerUser = data.user;
+        if (currentUser === answerUser) {
+          document.getElementById('new_answer').remove();
+        }
         let userCount  = parseInt(document.getElementById('wait_msg').getAttribute('data-users'), 10);
         let missingAnswers = userCount - missing;
         if (missingAnswers === 1) {
