@@ -1,4 +1,8 @@
 <div class="container pt-3">
+  <%= link_to root_path, class: "home-link" do %>
+    <%= image_tag "home.png", class: "home-image" %>
+    <span class="home-text">Home</span>
+  <% end %>
   <h1 class="ntg-title">NAME THE PAIN</h1>
   <p class="ntg-text">Start a game to find the best target, pain or solution</p>
   <%= simple_form_for @game do |f| %>
