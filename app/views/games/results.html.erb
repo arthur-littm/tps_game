@@ -1,1 +1,17 @@
-<h3>I am results page! Style me!</h3>
+<div class="home-banner">
+  <%= image_tag "party.png", class: "endgame-party-image" %>
+  <h1 class="ntg-title">SARAH WON!</h1>
+    <% @game.users.each do |user| %>
+      <div class="user-card">
+        <span class="letter">
+          <%= user.name.first(1).upcase %>
+        </span>
+        <strong><%= user.name %> - FAKE point</strong>
+
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "HOME", root_path, class: "btn btn-endgame mb-2 "%>
+
+</div>
+
