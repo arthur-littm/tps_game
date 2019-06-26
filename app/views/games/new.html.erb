@@ -4,5 +4,6 @@
   <%= simple_form_for @game do |f| %>
     <%= f.input :rounds, collection: %w[2 3 4 5], prompt: "Number of rounds", label: false %>
     <%= f.input :user_name, placeholder: "Choose username", label: false %>
+    <%= f.submit "LET'S GO", class: "btn btn-one w-100 my-5" %>
   <% end %>
 </div>
