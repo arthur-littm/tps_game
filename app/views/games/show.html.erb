@@ -6,5 +6,5 @@
       <li><%= user.name %></li>
     <% end %>
   </ul>
-  <%= link_to "Start game", game_round_path(@game), class: "btn btn-primary" %>
+  <%= link_to "Start game", game_round_path(@game.code, @game.rounds.first), class: "btn btn-primary" %>
 </div>
