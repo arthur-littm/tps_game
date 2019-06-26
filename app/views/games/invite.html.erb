@@ -1,11 +1,11 @@
-<div class="container join pt-3">
-  <h1 class="mb-5">NAME THE PAIN!</h1>
+<div class="container pt-3">
+  <h1 class="ntg-title">NAME THE PAIN!</h1>
   <p>Join a game to find the best target, pain or solution</p>
   <div class="my-5">
     <%= simple_form_for(@user) do |f| %>
       <%= f.input :game_code, label: false, placeholder: "Enter game code" %>
       <%= f.input :name, label: false, placeholder: "Enter a nickname" %>
-      <%= f.submit "LET'S GO", class: "btn btn-one w-100" %>
+      <%= f.submit "LET'S GO", class: "btn btn-one w-100 my-5" %>
     <% end %>
   </div>
 
