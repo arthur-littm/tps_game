@@ -8,7 +8,8 @@ class AnswersController < ApplicationController
     Pusher.trigger('answer-channel','new-answer', {
       answer: @answer.content,
       id: @answer.id,
-      missing: @answer.round.answers.size
+      missing: @answer.round.answers.size,
+      user: @answer.user.id
     })
     # redirect_to game_round_path(@answer.round.game, @answer.round)
   end

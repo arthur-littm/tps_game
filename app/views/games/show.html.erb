@@ -10,14 +10,31 @@
   <p>and enter the code</p>
   <p><code><%= @game.code %></code></p>
   <hr>
-  <% @game.users.each do |user| %>
-    <div class="user-card">
-      <span class="letter">
-        <%= user.name.first(1).upcase %>
-      </span>
-      <strong><%= user.name %></strong>
+  <div id="users">
+    <% @game.users.each do |user| %>
+      <div class="user-card">
+        <span class="letter">
+          <%= user.name.first(1).upcase %>
+        </span>
+        <strong><%= user.name %></strong>
 
-    </div>
-  <% end %>
+      </div>
+    <% end %>
+  </div>
   <%= link_to "Start game", game_round_path(@game.code, @game.rounds.first), class: "btn btn-primary" %>
 </div>
+<script>
+    var channel = pusher.subscribe('game-channel');
+    channel.bind('new-join', (data) => {
+      let name = data.user;
+      document.getElementById('users').insertAdjacentHTML('beforeend', `
+        <div class="user-card">
+          <span class="letter">
+            ${name[0].toUpperCase()}
+          </span>
+          <strong>${name.toLowerCase()}</strong>
+
+        </div>
+      `);
+    });
+</script>

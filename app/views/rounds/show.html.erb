@@ -1,5 +1,5 @@
 <div class="container">
-  <p id="wait_msg" data-users="<%= @round.game.users.size %>">Waiting for <%= pluralize(@round.game.users.size, 'answer') %></p>
+  <p id="wait_msg" data-users="<%= @round.game.users.size %>">Waiting for <%= pluralize(@round.game.users.size - @round.answers.size, 'answer') %></p>
   <p>Guess the <%= @round.guess_category %> for <%= @round.start_up.company %></p>
   <% unless @round.answers.pluck(:user_id).include?(session[:user_id]) %>
     <%= simple_form_for [@round, @answer] do |f| %>
@@ -18,7 +18,11 @@
     channel.bind('new-answer', (data) => {
         let missing = data.missing;
         document.getElementById('answer_content').value = '';
-        document.getElementById('new_answer').remove();
+        let currentUser = <%= session[:user_id] %>;
+        let answerUser = data.user;
+        if (currentUser === answerUser) {
+          document.getElementById('new_answer').remove();
+        }
         let userCount  = parseInt(document.getElementById('wait_msg').getAttribute('data-users'), 10);
         let missingAnswers = userCount - missing;
         if (missingAnswers === 1) {
