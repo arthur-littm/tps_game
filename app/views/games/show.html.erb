@@ -1,5 +1,9 @@
-<div class="container join pt-5">
-  <h1 class="mb-5">NAME THE PAIN</h1>
+<div class="container join pt-3">
+  <%= link_to root_path, class: "home-link" do %>
+    <%= image_tag "home.png", class: "home-image" %>
+    <span class="home-text">Home</span>
+  <% end %>
+  <h1 class="ntg-title mb-5">NAME THE PAIN</h1>
   <p>Waiting for people to join the game!</p>
   <p>To join, go to </p>
   <p><code><%= join_url %></code></p>
