@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>The code is <code><%= @game.code %></code></h2>
+  <p>Got to <code><%= join_url %></code> to join</p>
+  <ul>
+    <% @game.users.each do |user| %>
+      <li><%= user.name %></li>
+    <% end %>
+  </ul>
+</div>
