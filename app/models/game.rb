@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  has_many :participants, foreign_key: :user_id, class_name: 'User'
+  has_many :users
   has_many :rounds
   belongs_to :user, optional: true
   validates :code, presence: true
