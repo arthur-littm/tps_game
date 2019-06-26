@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     if @game.present?
       @user = User.new(name: params[:user][:name], game: @game)
       if @user.save
+        session[:user_id] = @user.id
         redirect_to game_path(@game.code)
       else
         flash[:error] = 'User has no name'

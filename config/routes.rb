@@ -14,4 +14,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :rounds, only: [] do
+    resources :answers, only: :create
+  end
 end

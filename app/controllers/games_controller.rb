@@ -26,9 +26,9 @@ class GamesController < ApplicationController
       @game.update(user: @user)
       rounds.times do
         startups = StartUp.all.sample(rounds)
-        Round.create(game: @game, startup: startups[rounds - 1])
+        Round.create(game: @game, start_up: startups[rounds - 1])
       end
-      redirect_to game_path(@game)
+      redirect_to game_path(@game.code)
     else
       render :new
     end
