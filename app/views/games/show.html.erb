@@ -1,10 +1,19 @@
-<div class="container">
-  <h2>The code is <code><%= @game.code %></code></h2>
-  <p>Got to <code><%= join_url %></code> to join</p>
-  <ul>
-    <% @game.users.each do |user| %>
-      <li><%= user.name %></li>
-    <% end %>
-  </ul>
+<div class="container join pt-5">
+  <h1 class="mb-5">NAME THE PAIN!</h1>
+  <p>Waiting for people to join the game!</p>
+  <p>To join, go to </p>
+  <p><code><%= join_url %></code></p>
+  <p>and enter the code</p>
+  <p><code><%= @game.code %></code></p>
+  <hr>
+  <% @game.users.each do |user| %>
+    <div class="user-card">
+      <span class="letter">
+        <%= user.name.first(1).upcase %>
+      </span>
+      <strong><%= user.name %></strong>
+
+    </div>
+  <% end %>
   <%= link_to "Start game", game_round_path(@game.code, @game.rounds.first), class: "btn btn-primary" %>
 </div>
