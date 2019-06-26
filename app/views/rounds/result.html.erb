@@ -3,7 +3,12 @@
   <p>Pick the best solution for <%= @start_up.company %></p>
   <div class="my-5">
     <div class="round-result">
-        <%= @start_up.target %>
+        <ul id="answer_section">
+          <% @round.answers.each do |answer| %>
+            <li><%= answer.content %></li>
+          <% end %>
+        </ul>
+
     </div>
 
   </div>
