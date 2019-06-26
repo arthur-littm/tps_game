@@ -1,5 +1,13 @@
-<%= simple_form_for @game do |f| %>
-    <%= f.input :rounds, collection: %w[2 3 4 5] %>
-    <%= f.input :user_name %>
-    <%= f.submit 'Start' %>
-<% end %>
+<div class="container pt-3">
+  <%= link_to root_path, class: "home-link" do %>
+    <%= image_tag "home.png", class: "home-image" %>
+    <span class="home-text">Home</span>
+  <% end %>
+  <h1 class="ntg-title">NAME THE PAIN</h1>
+  <p class="ntg-text">Start a game to find the best target, pain or solution</p>
+  <%= simple_form_for @game do |f| %>
+    <%= f.input :rounds, collection: %w[2 3 4 5], prompt: "Number of rounds", label: false %>
+    <%= f.input :user_name, placeholder: "Choose username", label: false %>
+    <%= f.submit "LET'S GO", class: "btn btn-one w-100 my-5" %>
+  <% end %>
+</div>

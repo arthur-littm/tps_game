@@ -1,7 +1,11 @@
 <div class="container">
-  <%= simple_form_for [@round, @answer], remote: true do |f| %>
-    <%= f.input :content %>
-    <%= f.submit %>
+  <p id="wait_msg" data-users="<%= @round.game.users.size %>">Waiting for <%= pluralize(@round.game.users.size, 'answer') %></p>
+  <p>Guess the <%= @round.guess_category %> for <%= @round.start_up.company %></p>
+  <% unless @round.answers.pluck(:user_id).include?(session[:user_id]) %>
+    <%= simple_form_for [@round, @answer] do |f| %>
+      <%= f.input :content %>
+      <%= f.submit 'guess', id:'submit_answer' %>
+    <% end %>
   <% end %>
   <ul id="answer_section">
     <% @round.answers.each do |answer| %>
@@ -10,17 +14,20 @@
   </ul>
 </div>
 <script>
-    const channel = pusher.subscribe('answer-channel');
-    channel.bind('new-answer', ({ answer, id }) => {
-      const list = document.getElementById('answer_section');
-      list.insertAdjacentHTML('beforeend', `<li>${answer} - 0 Votes </li>`);
-      list.lastElementChild.insertAdjacentHTML('beforeend',  '<a href=""></a>')
-      document.getElementById('answer_content').value = '';
+    var channel = pusher.subscribe('answer-channel');
+    channel.bind('new-answer', (data) => {
+        let missing = data.missing;
+        document.getElementById('answer_content').value = '';
+        document.getElementById('new_answer').remove();
+        let userCount  = parseInt(document.getElementById('wait_msg').getAttribute('data-users'), 10);
+        let missingAnswers = userCount - missing;
+        if (missingAnswers === 1) {
+          document.getElementById('wait_msg').innerHTML = `<p>Waiting for ${missingAnswers} answer</p>`;
+        } else {
+          document.getElementById('wait_msg').innerHTML = `<p>Waiting for ${missingAnswers} answers</p>`;
+        }
+        if (userCount === missing) {
+          window.location.href = '/games/<%= @round.game.id %>/rounds/<%= @round.id %>/result';
+        }
     });
-    channel.bind('vote', ({ id, content, voteCount }) => {
-      const text = `${content} - ${voteCount} Votes`
-      const answer = document.getElementById(`answer-${id}`)
-      answer.innerText = text
-      votes = document.querySelector('.vote-btn').forEach(btn => btn.remove())
-    })
 </script>

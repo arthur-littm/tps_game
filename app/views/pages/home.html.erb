@@ -1,12 +1,21 @@
 <div class="home-banner">
-  <h1 class="home-banner-title">NAME THE PAIN!</h1>
-</div>
-<div class="home-actions">
-  <%= link_to "JOIN A GAME", join_path, class: "btn btn-primary"%>
-  <%= link_to "MANGE A BITÉ", root_path, class: "btn btn-danger"%>
-</div>
-<div class="how-it-works">
-  <h1 class="how-it-works-title">HOW IT WORKS:</h1>
-
+  <h1 class="ntg-title">NAME THE PAIN</h1>
+  <p class="my-5">Find the pain, target and solution for a company.</p>
+  <%= link_to "JOIN GAME", join_path, class: "btn btn-one mb-2 w-100"%>
+  <br>
+  <%= link_to "START GAME", new_game_path, class: "btn btn-two w-100"%>
+  <h4 class="my-5">HOW IT WORKS</h4>
+  <div class="home-thing">
+    <%= image_tag "pain.png" %>
+    <span>Join a game or start your own to practice coming up with the perfect product pitch.</span>
+  </div>
+  <div class="home-thing">
+    <%= image_tag "target.png" %>
+    <span>Compete against other players in finding the missing target, pain or solution.</span>
+  </div>
+  <div class="home-thing">
+    <%= image_tag "solution.png" %>
+    <span>Vote for the most accurate answer and collect points - whoever has the most points wins!</span>
+  </div>
 </div>
 

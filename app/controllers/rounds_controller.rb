@@ -4,4 +4,9 @@ class RoundsController < ApplicationController
     @answer = Answer.new
     @user = User.find(session[:user_id])
   end
+
+  def result
+    @round = Round.find(params[:id])
+    @start_up = @round.start_up
+  end
 end

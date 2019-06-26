@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_26_140442) do
+ActiveRecord::Schema.define(version: 2019_06_26_150451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_06_26_140442) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "start_up_id"
+    t.string "guess_category"
     t.index ["game_id"], name: "index_rounds_on_game_id"
     t.index ["start_up_id"], name: "index_rounds_on_start_up_id"
   end
