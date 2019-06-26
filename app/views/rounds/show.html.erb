@@ -1,20 +1,26 @@
 <div class="container">
-  <%= simple_form_for [@round, @answer] do |f| %>
+  <%= simple_form_for [@round, @answer], remote: true do |f| %>
     <%= f.input :content %>
     <%= f.submit %>
   <% end %>
   <ul id="answer_section">
     <% @round.answers.each do |answer| %>
-      <li><%= answer.content %></li>
+      <li id="answer-<%= answer.id %>"><%= answer.content %> - <%= answer.votes.size %> Votes <%= link_to 'Vote', vote_answer_path(answer), class: 'vote_btn', method: :post, remote: true unless answer.user == @user || answer.votes.map(&:user).include?(@user) %></li>
     <% end %>
   </ul>
 </div>
 <script>
-    var channel = pusher.subscribe('answer-channel');
-    channel.bind('new-answer', (data) => {
-        let answer = data.answer;
-        let list = document.getElementById('answer_section');
-        list.insertAdjacentHTML('beforeend', `<li> ${answer} </li>`);
-        document.getElementById('answer_content').value = '';
+    const channel = pusher.subscribe('answer-channel');
+    channel.bind('new-answer', ({ answer, id }) => {
+      const list = document.getElementById('answer_section');
+      list.insertAdjacentHTML('beforeend', `<li>${answer} - 0 Votes </li>`);
+      list.lastElementChild.insertAdjacentHTML('beforeend',  '<a href=""></a>')
+      document.getElementById('answer_content').value = '';
     });
+    channel.bind('vote', ({ id, content, voteCount }) => {
+      const text = `${content} - ${voteCount} Votes`
+      const answer = document.getElementById(`answer-${id}`)
+      answer.innerText = text
+      votes = document.querySelector('.vote-btn').forEach(btn => btn.remove())
+    })
 </script>
