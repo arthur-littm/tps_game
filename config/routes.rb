@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "join", to: "games#invite", as: :join
+  get "endgame", to: "games#endgame", as: :endgame
 
   resources :users, only: [:create]
 

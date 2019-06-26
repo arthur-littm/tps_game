@@ -19,3 +19,15 @@
   border: 1px solid $primary;
   color: $primary;
 }
+
+.btn-endgame {
+  background-color: #E73F8B;
+  color: white;
+  padding: 10px 0;
+  z-index: 38;
+  opacity: 1;
+  position: absolute;
+  bottom: 50px;
+  left: calc(50% - 35vw);
+  width: 70vw;
+}
