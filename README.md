@@ -1,1 +1,1 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+Play a game of `NAME THE PAIN` [here](https://ptsg-game.herokuapp.com/), created by [Le Wagon teachers](https://www.lewagon.com) with love.
