@@ -1,7 +1,7 @@
 <div class="container">
   <%= simple_form_for [@round, @answer] do |f| %>
     <%= f.input :content %>
-    <%= f.submit %>
+    <%= f.submit 'guess', id:'submit_anwser' %>
   <% end %>
   <ul id="answer_section">
     <% @round.answers.each do |answer| %>
@@ -16,5 +16,6 @@
         let list = document.getElementById('answer_section');
         list.insertAdjacentHTML('beforeend', `<li> ${answer} </li>`);
         document.getElementById('answer_content').value = '';
+        document.getElementById('submit_anwser').disabled = false;
     });
 </script>
