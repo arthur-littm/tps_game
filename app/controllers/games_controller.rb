@@ -18,6 +18,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new
     @game.code = SecureRandom.hex(5)
+    @game.user = find_user
     if @game.save
       redirect_to game_path(@game)
     else
@@ -29,5 +30,9 @@ class GamesController < ApplicationController
 
   def find_game
     @game = Game.find_by(code: params[:id])
+  end
+
+  def find_user
+    User.find(params[:user_id])
   end
 end
