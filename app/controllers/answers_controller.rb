@@ -11,6 +11,17 @@ class AnswersController < ApplicationController
     # redirect_to game_round_path(@answer.round.game, @answer.round)
   end
 
+  def vote
+    @user = User.find(session[:user_id])
+    @answer = Answer.find(params[:id])
+    vote = Vote.new(user: @user, answer: @answer, round: @answer.round)
+    if vote.save
+      render json: { message: 'success' }, status: 200
+    else
+      render json: { message: @votes.errors.full_messages }, status: 422
+    end
+  end
+
   private
 
   def answer_params

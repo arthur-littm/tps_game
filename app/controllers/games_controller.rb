@@ -1,9 +1,6 @@
 class GamesController < ApplicationController
   before_action :find_game, only: [:show]
 
-  def show
-  end
-
   def invite
     @user = User.new
   end
@@ -23,6 +20,7 @@ class GamesController < ApplicationController
     if @game.save
       @user.game = @game
       @user.save
+      session[:user_id] = @user.id
       @game.update(user: @user)
       rounds.times do
         startups = StartUp.all.sample(rounds)
