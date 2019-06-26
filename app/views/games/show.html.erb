@@ -1,0 +1,8 @@
+<div class="container">
+  <h2>The code is <code><%= @game.code %></code></h2>
+  <ul>
+    <% @game.users.each do |user| %>
+      <li><%= user.name %></li>
+    <% end %>
+  </ul>
+</div>
