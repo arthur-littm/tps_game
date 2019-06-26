@@ -17,7 +17,6 @@
     var channel = pusher.subscribe('answer-channel');
     channel.bind('new-answer', (data) => {
         let missing = data.missing;
-        document.getElementById('answer_content').value = '';
         let currentUser = <%= session[:user_id] %>;
         let answerUser = data.user;
         if (currentUser === answerUser) {
