@@ -16,6 +16,6 @@
         let list = document.getElementById('answer_section');
         list.insertAdjacentHTML('beforeend', `<li> ${answer} </li>`);
         document.getElementById('answer_content').value = '';
-        document.getElementById('submit_answer').disabled = false;
+        document.getElementById('new_answer').remove();
     });
 </script>
