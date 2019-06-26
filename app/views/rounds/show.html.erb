@@ -1,12 +1,25 @@
-<div class="container">
-  <p id="wait_msg" data-users="<%= @round.game.users.size %>">Waiting for <%= pluralize(@round.game.users.size - @round.answers.size, 'answer') %></p>
-  <p>Guess the <%= @round.guess_category %> for <%= @round.start_up.company %></p>
-  <% unless @round.answers.pluck(:user_id).include?(session[:user_id]) %>
-    <%= simple_form_for [@round, @answer] do |f| %>
-      <%= f.input :content %>
-      <%= f.submit 'guess', id:'submit_answer' %>
+<div class="container text-center">
+  <h1><%= @round.start_up.company %></h1>
+  <p id="wait_msg" data-users="<%= @round.game.users.size %>">Waiting for <%= pluralize(@round.game.users.size, 'answer') %></p>
+  <% Round::CATEGORIES.each do |category| %>
+  <div class="post-it">
+    <p><strong><%= category %></strong></p>
+    <% if @round.guess_category == category %>
+      <% unless @round.answers.pluck(:user_id).include?(session[:user_id]) %>
+        <%= simple_form_for [@round, @answer] do |f| %>
+          <%= f.input :content, label: false %>
+          <%= f.submit 'Submit answer', id:'submit_answer', class: "btn btn-three" %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p class="white">
+        <%= @round.start_up.send(category) %>
+      </p>
     <% end %>
+    <%=  %>
+  </div>
   <% end %>
+
   <ul id="answer_section">
     <% @round.answers.each do |answer| %>
       <li id="answer-<%= answer.id %>"><%= answer.content %> - <%= answer.votes.size %> Votes <%= link_to 'Vote', vote_answer_path(answer), class: 'vote_btn', method: :post, remote: true unless answer.user == @user || answer.votes.map(&:user).include?(@user) %></li>
