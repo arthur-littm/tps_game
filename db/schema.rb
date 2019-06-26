@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 2019_06_26_104939) do
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "start_up_id"
-    t.index ["start_up_id"], name: "index_games_on_start_up_id"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_games_on_user_id"
   end
@@ -42,14 +40,6 @@ ActiveRecord::Schema.define(version: 2019_06_26_104939) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "start_ups", force: :cascade do |t|
-    t.string "pain"
-    t.string "target"
-    t.string "solution"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.bigint "game_id"
@@ -58,7 +48,6 @@ ActiveRecord::Schema.define(version: 2019_06_26_104939) do
     t.index ["game_id"], name: "index_users_on_game_id"
   end
 
-  add_foreign_key "games", "start_ups"
   add_foreign_key "games", "users"
   add_foreign_key "rounds", "games"
   add_foreign_key "rounds", "start_ups"
