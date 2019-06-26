@@ -1,0 +1,2 @@
+class StartUp < ApplicationRecord
+end
