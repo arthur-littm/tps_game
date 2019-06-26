@@ -1,0 +1,19 @@
+.btn-one {
+  background-color: $primary;
+  color: white;
+}
+
+.btn-one:hover {
+  background-color: darken($primary, 10%);
+  color: white;
+}
+
+.btn-two {
+  border: 1px solid white;
+  color: white;
+}
+
+.btn-two:hover {
+  border: 1px solid $primary;
+  color: $primary;
+}

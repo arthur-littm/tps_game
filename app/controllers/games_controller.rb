@@ -15,16 +15,18 @@ class GamesController < ApplicationController
   def create
     @game = Game.new
     rounds = game_params[:rounds].to_i
-    @game.code = SecureRandom.hex(5)
+    @game.code = Faker::Movies::StarWars.planet.parameterize
     @user = User.new(name: game_params[:user_name])
     if @game.save
       @user.game = @game
       @user.save
       session[:user_id] = @user.id
       @game.update(user: @user)
+      start_ups = StartUp.all.sample(rounds)
       rounds.times do
-        startups = StartUp.all.sample(rounds)
-        Round.create(game: @game, start_up: startups[rounds - 1])
+        start_up = start_ups.sample
+        Round.create(game: @game, start_up: start_up)
+        start_ups.delete(start_up)
       end
       redirect_to game_path(@game.code)
     else
