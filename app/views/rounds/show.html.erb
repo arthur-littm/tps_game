@@ -1,5 +1,5 @@
 <div class="container">
-  <p id="wait_msg" data-users="<%= @round.game.users.size %>">Waiting for <%= pluralize(@round.game.users.size, 'answer') %></p>
+  <p id="wait_msg" data-users="<%= @round.game.users.size %>">Waiting for <%= pluralize(@round.game.users.size - @round.answers.size, 'answer') %></p>
   <p>Guess the <%= @round.guess_category %> for <%= @round.start_up.company %></p>
   <% unless @round.answers.pluck(:user_id).include?(session[:user_id]) %>
     <%= simple_form_for [@round, @answer] do |f| %>
