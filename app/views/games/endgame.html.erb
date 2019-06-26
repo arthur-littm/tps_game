@@ -1,0 +1,32 @@
+<div class="home-banner">
+  <%= image_tag "party.png", class: "endgame-party-image" %>
+  <h1 class="ntg-title">SARAH WON!</h1>
+
+  <div id="users">
+    <div class="user-card-endgame">
+      <span class="letter">S</span>
+      <span>Sarah - 14 points</span>
+    </div>
+    <div class="user-card-endgame">
+      <span class="letter">F</span>
+      <span>Fanning - 12 points</span>
+    </div>
+    <div class="user-card-endgame">
+      <span class="letter">A</span>
+      <span>Arthur - 1 point</span>
+    </div>
+
+<!--     <%# @game.users.each do |user| %>
+      <div class="user-card">
+        <span class="letter">
+          <%#= user.name.first(1).upcase %>
+        </span>
+        <strong><%#= user.name %></strong>
+
+      </div>
+    <%# end %> -->
+  </div>
+  <%= link_to "HOME", root_path, class: "btn btn-endgame mb-2 "%>
+
+</div>
+

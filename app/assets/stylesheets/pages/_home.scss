@@ -65,6 +65,25 @@
   margin-bottom: 16px;
 }
 
+.user-card-endgame {
+  display: flex;
+  align-items: center;
+  width: 60vw;
+  margin: auto;
+  .letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    margin-right: 8px;
+    background-color: $primary;
+    color: white;
+  }
+  margin-bottom: 16px;
+}
+
 .form-control:focus {
   color: #495057;
   background-color: #fff;

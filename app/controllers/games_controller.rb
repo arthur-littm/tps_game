@@ -34,6 +34,9 @@ class GamesController < ApplicationController
     end
   end
 
+  def endgame
+  end
+
   private
 
   def game_params
