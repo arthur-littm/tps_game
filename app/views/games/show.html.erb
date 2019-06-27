@@ -22,7 +22,11 @@
       </div>
     <% end %>
   </div>
-  <%= link_to "Start game", game_round_path(@game.code, @game.rounds.first), class: "btn btn-primary" %>
+  <% if @game.user.id == session[:user_id] %>
+    <%= link_to "Start game", game_round_path(@game.code, @game.rounds.first), class: "btn btn-primary" %>
+  <% else %>
+    <p>Waiting for host to start the game...</p>
+  <% end %>
 </div>
 <script>
     var channel = pusher.subscribe('game-channel');
@@ -37,5 +41,12 @@
 
         </div>
       `);
+    });
+    var channel = pusher.subscribe('game-channel');
+    channel.bind('start-game', (data) => {
+      let started = data.started
+      if(started) {
+        window.location.href = `/games/<%= @game.code %>/rounds/<%= @game.rounds.first.id %>`;
+      }
     });
 </script>
