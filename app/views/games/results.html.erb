@@ -1,15 +1,17 @@
 <div class="home-banner">
   <%= image_tag "party.png", class: "endgame-party-image" %>
   <h1 class="ntg-title">SARAH WON!</h1>
-    <% @game.users.each do |user| %>
-      <div class="user-card">
-        <span class="letter">
-          <%= user.name.first(1).upcase %>
-        </span>
-        <strong><%= user.name %> - FAKE point</strong>
+    <div class="scores">
+      <% @game.scores.each do |score| %>
+        <div class="user-card-endgame">
+          <span class="letter">
+            <%= score[0].first(1).upcase %>
+          </span>
+          <strong><%= score[0] %> - <%= score[1] %> points</strong>
 
-      </div>
-    <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
   <%= link_to "HOME", root_path, class: "btn btn-endgame mb-2 "%>
 
