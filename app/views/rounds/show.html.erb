@@ -1,5 +1,5 @@
 <div class="container text-center">
-  <!-- <h1><%#= @round.start_up.company %></h1> -->
+  <h1><%= @round.start_up.company %></h1>
   <p id="wait_msg" data-users="<%= @round.game.users.size %>">Waiting for <%= pluralize(@round.game.users.size, 'answer') %></p>
   <% Round::CATEGORIES.each do |category| %>
   <div class="post-it">
