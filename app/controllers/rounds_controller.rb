@@ -3,7 +3,7 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id])
     @answer = Answer.new
     @user = User.find(session[:user_id])
-    redirect_to result_game_round_path(@round.game, @round) if @round.game.users.size == @round.answers.size
+    redirect_to result_game_round_path(@round.game, @round) if @round.game.users.size <= @round.answers.size
   end
 
   def result

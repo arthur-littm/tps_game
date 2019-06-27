@@ -1,6 +1,6 @@
 <div class="container join pt-3">
   <h1 class="mb-5">NAME THE PAIN</h1>
-  <p>Pick the best solution for <%= @start_up.company %></p>
+  <p>Pick the real solution for <%= @start_up.company %></p>
   <div class="my-5">
     <div class="round-result">
         <ul id="answer_section" class="round-answers">
@@ -8,6 +8,9 @@
             <%= link_to vote_answer_path(answer), method: :post, remote: true do%>
               <li class="round-answer-box"><%= answer.content %></li>
             <% end %>
+          <% end %>
+          <%= link_to "#" do %>
+            <li class="round-answer-box"><%= @start_up.send(@round.guess_category) %></li>
           <% end %>
         </ul>
     </div>
