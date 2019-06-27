@@ -17,9 +17,8 @@
   const results = document.querySelectorAll("#answer_section li");
   results.forEach((answer) => {
     answer.addEventListener('click', (e) => {
-      results.forEach(answer => answer.classList.add("d-none"));
+      results.forEach(answer => answer.classList.remove("round-answers-active"));
       e.currentTarget.classList.toggle("round-answers-active");
-      e.currentTarget.classList.remove("d-none");
     });
   });
   const channel = pusher.subscribe('answer-channel');
