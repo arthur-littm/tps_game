@@ -3,5 +3,5 @@ class Vote < ApplicationRecord
   belongs_to :round
   belongs_to :answer
 
-  validates :user_id, uniqueness: { scope: :round_id }
+  # validates :user_id, uniqueness: { scope: :round_id }
 end
