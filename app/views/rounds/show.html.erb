@@ -30,11 +30,6 @@
     var channel = pusher.subscribe('answer-channel');
     channel.bind('new-answer', (data) => {
         let missing = data.missing;
-        let currentUser = <%= session[:user_id] %>;
-        let answerUser = data.user;
-        if (currentUser === answerUser) {
-          document.getElementById('new_answer').remove();
-        }
         let userCount  = parseInt(document.getElementById('wait_msg').getAttribute('data-users'), 10);
         let missingAnswers = userCount - missing;
         if (missingAnswers === 1) {

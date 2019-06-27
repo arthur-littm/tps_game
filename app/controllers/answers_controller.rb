@@ -11,7 +11,6 @@ class AnswersController < ApplicationController
       missing: @answer.round.answers.size,
       user: @answer.user.id
     })
-    # redirect_to game_round_path(@answer.round.game, @answer.round)
   end
 
   def vote
