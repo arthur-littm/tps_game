@@ -20,6 +20,17 @@
   color: $primary;
 }
 
+.btn-white {
+  background-color: white;
+  color: $primary;
+  padding: 10px 5px;
+}
+
+.btn-white:hover {
+  border: 1px solid white;
+  color: $primary;
+}
+
 .btn-endgame {
   background-color: #E73F8B;
   color: white;

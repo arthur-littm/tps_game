@@ -1,6 +1,6 @@
 <div class="home-banner">
   <%= image_tag "party.png", class: "endgame-party-image" %>
-  <h1 class="ntg-title">SARAH WON!</h1>
+  <h1 class="ntg-title"><%= @game.scores[0][0].upcase %> WON!</h1>
     <div class="scores">
       <% @game.scores.each do |score| %>
         <div class="user-card-endgame">

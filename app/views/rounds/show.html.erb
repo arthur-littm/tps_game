@@ -1,14 +1,14 @@
 <div class="container text-center">
-  <h1><%= @round.start_up.company %></h1>
+  <!-- <h1><%#= @round.start_up.company %></h1> -->
   <p id="wait_msg" data-users="<%= @round.game.users.size %>">Waiting for <%= pluralize(@round.game.users.size, 'answer') %></p>
   <% Round::CATEGORIES.each do |category| %>
   <div class="post-it">
     <p><strong><%= category %></strong></p>
     <% if @round.guess_category == category %>
       <% unless @round.answers.pluck(:user_id).include?(session[:user_id]) %>
-        <%= simple_form_for [@round, @answer] do |f| %>
-          <%= f.input :content, label: false %>
-          <%= f.submit 'Submit answer', id:'submit_answer', class: "btn btn-light", data: {disable_with: "Answer submitted"} %>
+        <%= simple_form_for [@round, @answer], class: "form-group" do |f| %>
+          <%= f.input :content, label: false, class: "form-control post-it-input" %>
+          <%= f.submit 'Submit answer', id:'submit_answer', class: "btn btn-white", data: {disable_with: "Answer submitted"} %>
         <% end %>
       <% end %>
     <% else %>
